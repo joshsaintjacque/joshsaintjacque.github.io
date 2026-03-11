@@ -13,6 +13,7 @@
   },
   "scripts": {
     "sync": "node scripts/sync-obsidian-content.mjs",
+    "sync:push": "node scripts/sync-and-push.mjs",
     "build": "npm run sync && npx quartz build",
     "serve": "npm run sync && npx quartz build --serve",
     "quartz": "./quartz/bootstrap-cli.mjs",
