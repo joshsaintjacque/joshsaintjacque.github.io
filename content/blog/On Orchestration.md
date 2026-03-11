@@ -7,9 +7,6 @@ tags:
   - engineering
 description: Short summary for previews.
 ---
-# On Orchestration
-
-
 I don't really write code anymore, and I'm not sure how I feel about that. Don't get me wrong, I'm still shipping software - more than ever in my career. But the act of writing syntax is is no longer part of that.
 
 I've been a Software Engineer for over a decade and was hacking together code for many years prior to that. Most of my adult life professionally has been about building and shipping software. Usually that meant *writing code* as much as, if not more than, anything else.
