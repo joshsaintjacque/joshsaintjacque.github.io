@@ -1,3 +1,264 @@
 @use "./base.scss";
+@use "./variables.scss" as *;
 
-// put your custom CSS here!
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image: radial-gradient(var(--gray) 0.5px, transparent 0.5px);
+  background-size: 22px 22px;
+  opacity: 0.1;
+}
+
+.page-title {
+  letter-spacing: -0.02em;
+
+  a {
+    background: linear-gradient(135deg, var(--dark), var(--secondary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: opacity 0.3s ease;
+
+    &::after {
+      content: "▎";
+      display: inline-block;
+      margin-left: 1px;
+      background: none;
+      -webkit-text-fill-color: var(--secondary);
+      animation: cursor-blink 1s step-end infinite;
+      font-weight: 300;
+      font-size: 0.85em;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+@keyframes cursor-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.content-meta {
+  font-family: var(--codeFont);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin-top: 0.5rem;
+}
+
+.article-title {
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--secondary);
+  display: inline-block;
+}
+
+article a:not(.internal):not([role="anchor"]):not(.tag-link) {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--tertiary);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+blockquote {
+  background: var(--highlight);
+  border-radius: 0 8px 8px 0;
+  padding: 0.75rem 1.2rem;
+
+  p {
+    margin: 0.3rem 0;
+  }
+}
+
+pre {
+  border-radius: 8px !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+:root[saved-theme="dark"] pre {
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+:not(pre) > code {
+  border: 1px solid var(--lightgray);
+  font-size: 0.84em;
+  padding: 0.12rem 0.35rem;
+}
+
+a.internal.tag-link {
+  border: 1px solid color-mix(in srgb, var(--secondary) 30%, transparent);
+  border-radius: 999px;
+  padding: 0.08rem 0.6rem;
+  font-family: var(--codeFont);
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+  line-height: 1.8rem;
+
+  &:hover {
+    background: color-mix(in srgb, var(--secondary) 12%, transparent);
+    border-color: var(--secondary);
+    color: var(--secondary);
+  }
+}
+
+.navigation-progress {
+  background: linear-gradient(90deg, var(--secondary), var(--tertiary)) !important;
+}
+
+hr {
+  background: linear-gradient(90deg, transparent, var(--lightgray), transparent) !important;
+}
+
+.breadcrumb-container {
+  font-family: var(--codeFont);
+  font-size: 0.82rem;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.search > .search-button {
+  border-radius: 8px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--secondary) 15%, transparent);
+  }
+}
+
+.explorer-content ul li > a.active {
+  font-weight: 600;
+}
+
+.center > article {
+  animation: content-enter 0.35s ease-out;
+}
+
+@keyframes content-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+footer {
+  border-top: 1px solid var(--lightgray);
+  padding-top: 1.5rem;
+  font-family: var(--codeFont);
+  font-size: 0.82rem;
+
+  ul {
+    gap: 1.5rem !important;
+  }
+
+  a {
+    font-weight: 400;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+::selection {
+  background: color-mix(in srgb, var(--secondary) 25%, transparent);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray);
+  border-radius: 3px;
+
+  &:hover {
+    background: var(--darkgray);
+  }
+}
+
+@supports (scrollbar-width: thin) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--gray) transparent;
+  }
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.01em;
+}
+
+.darkmode svg {
+  transition:
+    fill 0.2s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    transform: rotate(15deg);
+  }
+}
+
+.graph > h3,
+.toc > h3,
+.backlinks > h3 {
+  font-family: var(--codeFont);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gray);
+  font-weight: 400;
+}
+
+button.desktop-explorer h2,
+button.mobile-explorer h2 {
+  font-family: var(--codeFont);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.82rem !important;
+  font-weight: 400;
+  color: var(--gray);
+}
