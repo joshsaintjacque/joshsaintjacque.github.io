@@ -16,6 +16,9 @@ import Graph from "./Graph"
 import Backlinks from "./Backlinks"
 import Search from "./Search"
 import Footer from "./Footer"
+import BlogTopBar from "./BlogTopBar"
+import BlogPostHero from "./BlogPostHero"
+import BlogAwareFooter from "./BlogAwareFooter"
 import DesktopOnly from "./DesktopOnly"
 import MobileOnly from "./MobileOnly"
 import RecentNotes from "./RecentNotes"
@@ -23,6 +26,7 @@ import Breadcrumbs from "./Breadcrumbs"
 import Comments from "./Comments"
 import Flex from "./Flex"
 import ConditionalRender from "./ConditionalRender"
+import BlogAwareFolderContent from "./pages/BlogAwareFolderContent"
 
 export {
   ArticleTitle,
@@ -42,6 +46,9 @@ export {
   Backlinks,
   Search,
   Footer,
+  BlogTopBar,
+  BlogPostHero,
+  BlogAwareFooter,
   DesktopOnly,
   MobileOnly,
   RecentNotes,
@@ -50,4 +57,5 @@ export {
   Comments,
   Flex,
   ConditionalRender,
+  BlogAwareFolderContent,
 }

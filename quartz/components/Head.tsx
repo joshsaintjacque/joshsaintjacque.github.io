@@ -4,6 +4,7 @@ import { CSSResourceToStyleElement, JSResourceToScriptElement } from "../util/re
 import { googleFontHref, googleFontSubsetHref } from "../util/theme"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { unescapeHTML } from "../util/escape"
+import { isBlogLandingRoute, isBlogRoute, normalizeTitle } from "../util/blog"
 import { CustomOgImagesEmitterName } from "../plugins/emitters/ogImage"
 export default (() => {
   const Head: QuartzComponent = ({
@@ -13,12 +14,17 @@ export default (() => {
     ctx,
   }: QuartzComponentProps) => {
     const titleSuffix = cfg.pageTitleSuffix ?? ""
+    const isBlogHome = isBlogLandingRoute(fileData.slug)
     const title =
-      (fileData.frontmatter?.title ?? i18n(cfg.locale).propertyDefaults.title) + titleSuffix
-    const description =
-      fileData.frontmatter?.socialDescription ??
-      fileData.frontmatter?.description ??
-      unescapeHTML(fileData.description?.trim() ?? i18n(cfg.locale).propertyDefaults.description)
+      normalizeTitle(
+        isBlogHome ? "Simplify, Ship, Repeat" : fileData.frontmatter?.title,
+        i18n(cfg.locale).propertyDefaults.title,
+      ) + titleSuffix
+    const description = isBlogHome
+      ? "Thoughts on software development by Josh Saint Jacque"
+      : (fileData.frontmatter?.socialDescription ??
+        fileData.frontmatter?.description ??
+        unescapeHTML(fileData.description?.trim() ?? i18n(cfg.locale).propertyDefaults.description))
 
     const { css, js, additionalHead } = externalResources
 
@@ -49,6 +55,12 @@ export default (() => {
               <link rel="stylesheet" href={googleFontSubsetHref(cfg.theme, cfg.pageTitle)} />
             )}
           </>
+        )}
+        {isBlogRoute(fileData.slug) && (
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
+          />
         )}
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
