@@ -11,6 +11,29 @@ import { GlobalConfiguration } from "../cfg"
 import { i18n } from "../i18n"
 import { styleText } from "util"
 
+const buildAssetVersion = (() => {
+  const commitSha = [
+    process.env.GITHUB_SHA,
+    process.env.CF_PAGES_COMMIT_SHA,
+    process.env.VERCEL_GIT_COMMIT_SHA,
+  ].find((value): value is string => Boolean(value))
+
+  if (commitSha) {
+    return commitSha.slice(0, 8)
+  }
+
+  const sourceDateEpoch = process.env.SOURCE_DATE_EPOCH
+  if (sourceDateEpoch) {
+    return sourceDateEpoch
+  }
+
+  return new Date().toISOString().replace(/[-:.TZ]/g, "")
+})()
+
+function withAssetVersion(path: string): string {
+  return `${path}?v=${buildAssetVersion}`
+}
+
 interface RenderComponents {
   head: QuartzComponent
   header: QuartzComponent[]
@@ -27,19 +50,19 @@ export function pageResources(
   baseDir: FullSlug | RelativeURL,
   staticResources: StaticResources,
 ): StaticResources {
-  const contentIndexPath = joinSegments(baseDir, "static/contentIndex.json")
+  const contentIndexPath = withAssetVersion(joinSegments(baseDir, "static/contentIndex.json"))
   const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())`
 
   const resources: StaticResources = {
     css: [
       {
-        content: joinSegments(baseDir, "index.css"),
+        content: withAssetVersion(joinSegments(baseDir, "index.css")),
       },
       ...staticResources.css,
     ],
     js: [
       {
-        src: joinSegments(baseDir, "prescript.js"),
+        src: withAssetVersion(joinSegments(baseDir, "prescript.js")),
         loadTime: "beforeDOMReady",
         contentType: "external",
       },
@@ -55,7 +78,7 @@ export function pageResources(
   }
 
   resources.js.push({
-    src: joinSegments(baseDir, "postscript.js"),
+    src: withAssetVersion(joinSegments(baseDir, "postscript.js")),
     loadTime: "afterDOMReady",
     moduleType: "module",
     contentType: "external",
