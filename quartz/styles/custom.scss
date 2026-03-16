@@ -280,7 +280,7 @@ body[data-slug^="blog/"] {
   --blog-frame: #4f6df6;
   --blog-canvas: #f8e894;
   --blog-paper: #fffdf6;
-  --blog-rail: #e9e5db;
+  --blog-rail: var(--blog-frame);
   --blog-ink: #000;
   --blog-muted: #4b5563;
   --light: #fffdf6;
@@ -304,7 +304,7 @@ body[data-slug^="blog/"] {
   --blog-frame: #3f59dd;
   --blog-canvas: #dccb63;
   --blog-paper: #fff7de;
-  --blog-rail: #e2dccd;
+  --blog-rail: var(--blog-frame);
   --blog-muted: #334155;
   --light: #fff7de;
   --lightgray: #d6c794;
