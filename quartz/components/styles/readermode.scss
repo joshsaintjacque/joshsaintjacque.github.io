@@ -1,3 +1,5 @@
+@use "../../styles/variables.scss" as *;
+
 .readermode {
   cursor: pointer;
   padding: 0;
@@ -22,13 +24,65 @@
 }
 
 :root[reader-mode="on"] {
-  & .sidebar.left,
-  & .sidebar.right {
-    opacity: 0;
-    transition: opacity 0.2s ease;
+  & .page > #quartz-body {
+    column-gap: 0;
+  }
 
-    &:hover {
-      opacity: 1;
+  @media all and ($desktop) {
+    & .page > #quartz-body {
+      grid-template-columns: 0 minmax(0, 1fr) 0;
     }
+  }
+
+  @media all and ($tablet) {
+    & .page > #quartz-body {
+      grid-template-columns: 0 minmax(0, 1fr);
+    }
+  }
+
+  & .sidebar.right {
+    display: none;
+  }
+
+  & .sidebar.left {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    min-width: 0;
+    width: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  & .sidebar.left > :not(.flex-component) {
+    display: none !important;
+  }
+
+  & .sidebar.left > .flex-component {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1000;
+    gap: 0 !important;
+    padding: 0.3rem 0.4rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--dark) 16%, transparent);
+    background: color-mix(in srgb, var(--light) 92%, transparent);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(8px);
+  }
+
+  & .sidebar.left > .flex-component > :not(:has(.readermode)) {
+    display: none !important;
+  }
+
+  & .sidebar.left > .flex-component > div:has(.readermode) {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
