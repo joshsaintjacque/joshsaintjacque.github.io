@@ -462,18 +462,19 @@ body[data-slug^="blog/"] .center > article a:not(.internal):not([role="anchor"])
 body[data-slug^="blog/"] .sidebar.left,
 body[data-slug^="blog/"] .sidebar.right {
   background: var(--blog-rail);
-  padding-top: 7rem;
+  padding-top: 5.2rem;
   gap: 1rem;
 }
 
 body[data-slug^="blog/"] .sidebar.left {
-  padding-right: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.9rem;
 }
 
 body[data-slug^="blog/"] .sidebar.right {
   gap: 1.25rem;
-  padding-right: 0.75rem;
-  padding-left: 0.75rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
 }
 
 body[data-slug^="blog/"] .sidebar.left > .explorer,
