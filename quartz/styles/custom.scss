@@ -325,7 +325,7 @@ body[data-slug^="blog/"] .page {
 }
 
 body[data-slug^="blog/"] .page > #quartz-body {
-  grid-template-columns: 320px minmax(0, 1fr) 320px;
+  grid-template-columns: 320px minmax(0, 1fr) 348px;
   column-gap: 1rem;
   row-gap: 1rem;
   padding: 0 1rem 1rem;
@@ -463,6 +463,16 @@ body[data-slug^="blog/"] .sidebar.right {
   gap: 1rem;
 }
 
+body[data-slug^="blog/"] .sidebar.left {
+  padding-right: 1.5rem;
+}
+
+body[data-slug^="blog/"] .sidebar.right {
+  gap: 1.25rem;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+}
+
 body[data-slug^="blog/"] .sidebar.left > .explorer,
 body[data-slug^="blog/"] .sidebar.left > .search,
 body[data-slug^="blog/"] .sidebar.left > .flex-component > div,
@@ -537,7 +547,7 @@ body[data-slug^="blog/"] button.mobile-explorer {
 body[data-slug^="blog/"] .graph,
 body[data-slug^="blog/"] .toc,
 body[data-slug^="blog/"] .backlinks {
-  padding: 1rem;
+  padding: 1.05rem 1.1rem;
 }
 
 body[data-slug^="blog/"] .graph > h3,
@@ -559,6 +569,17 @@ body[data-slug^="blog/"] .graph-outer,
 body[data-slug^="blog/"] .backlinks ul,
 body[data-slug^="blog/"] .toc-content {
   margin-top: 0.9rem;
+}
+
+body[data-slug^="blog/"] .graph > .graph-outer {
+  height: 212px;
+}
+
+body[data-slug^="blog/"] .toc-content > li > a {
+  display: block;
+  font-size: 0.96rem;
+  line-height: 1.4;
+  opacity: 0.68;
 }
 
 body[data-slug^="blog/"] .blog-topbar-breakout,
