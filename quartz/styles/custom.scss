@@ -280,6 +280,7 @@ body[data-slug^="blog/"] {
   --blog-frame: #4f6df6;
   --blog-canvas: #f8e894;
   --blog-paper: #fffdf6;
+  --blog-rail: #e9e5db;
   --blog-ink: #000;
   --blog-muted: #4b5563;
   --light: #fffdf6;
@@ -303,6 +304,7 @@ body[data-slug^="blog/"] {
   --blog-frame: #3f59dd;
   --blog-canvas: #dccb63;
   --blog-paper: #fff7de;
+  --blog-rail: #e2dccd;
   --blog-muted: #334155;
   --light: #fff7de;
   --lightgray: #d6c794;
@@ -459,6 +461,7 @@ body[data-slug^="blog/"] .center > article a:not(.internal):not([role="anchor"])
 
 body[data-slug^="blog/"] .sidebar.left,
 body[data-slug^="blog/"] .sidebar.right {
+  background: var(--blog-rail);
   padding-top: 7rem;
   gap: 1rem;
 }
