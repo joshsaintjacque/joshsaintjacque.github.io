@@ -491,6 +491,14 @@ body[data-slug^="blog/"] .sidebar.left > .flex-component {
   gap: 0.75rem !important;
 }
 
+body[data-slug^="blog/"] .sidebar.left > .flex-component > div:has(.darkmode),
+body[data-slug^="blog/"] .sidebar.left > .flex-component > div:has(.readermode) {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
 body[data-slug^="blog/"] .sidebar.left > .flex-component,
 body[data-slug^="blog/"] .sidebar.right > .flex-component {
   background: transparent;
